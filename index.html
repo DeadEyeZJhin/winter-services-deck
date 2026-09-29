@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Winter Services — bookings off Messenger, jobs on one app</title>
+<meta name="description" content="Winter Services: a booking page and a job app for an aircon service shop in Bacolod City — customers book and track online, the office accepts, quotes and schedules, technicians see every job and mark it done, with a full status trail and three numbers the owner can run the shop by. Portfolio presentation and live demo by Guile Pitogo.">
+<link rel="icon" href="assets/app/logo-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="deck.css?v=2">
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+<div class="bg-wash"></div>
+<div class="progress" id="prog"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <img src="assets/logo.png" alt="">
+    <div>Winter Services<small>Bookings and jobs, one app</small></div>
+  </div>
+  <div class="spacer"></div>
+  <div class="deckswitch" title="Short: the slides to present. Full: everything, to read.">
+    <button class="btn" data-set="short">Short</button><button class="btn" data-set="full">Full</button>
+  </div>
+  <span class="counter" id="counter"><b>01</b> / 18</span>
+  <button class="btn" id="notesBtn" title="Toggle speaker notes (N)">
+    <svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg><span>Notes</span>
+  </button>
+  <button class="btn" id="themeBtn" title="Toggle light / dark (T)">
+    <img class="icn tint" id="themeIcon" src="assets/sun.png" alt=""><span id="themeLabel">Light</span>
+  </button>
+  <button class="btn" id="fsBtn" title="Fullscreen (F)">
+    <svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>Present</span>
+  </button>
+</header>
+
+<nav class="rail" id="rail"></nav>
+
+<div class="navarrows">
+  <button class="btn" id="prevBtn" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button class="btn" id="nextBtn" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+</div>
+<div class="hint">← → navigate · T theme · N notes · F present · P print</div>
+
+<main class="deck" id="deck">
+
+<!-- ═══════════ 01 · COVER ═══════════ -->
+<section class="slide" data-title="Cover" data-short>
+  <div class="wrap appsplit">
+    <div>
+      <span class="eyebrow"><img class="icn tint" style="width:13px;height:13px" src="assets/star.png" alt="">Web page · Android · works with no signal</span>
+      <h1>An aircon shop's bookings, <span class="grad">off Messenger</span> and into one app.</h1>
+      <p class="sub" style="max-width:60ch">I build apps for the way a workplace actually runs. Winter Services is one: customers book an aircon job on a web page, the office accepts, quotes and schedules it, and the technicians see every job on their phones — and everybody sees the same status.</p>
+      <div class="cover-badges">
+        <span class="pill acc">Book online</span>
+        <span class="pill">Track my booking</span>
+        <span class="pill">Inbox &amp; quotation</span>
+        <span class="pill">Jobs &amp; schedule</span>
+        <span class="pill">Technician's phone</span>
+        <span class="pill">Full status</span>
+        <span class="pill good">Three numbers</span>
+      </div>
+      <div class="trys" style="margin-top:22px">
+        <a class="try" href="https://deadeyezjhin.github.io/winter-services-deck/demo/?as=office" target="_blank" rel="noopener">▶ Try the app — live demo</a>
+        <a class="try ghost" href="https://deadeyezjhin.github.io/winter-services-deck/demo/?as=guest" target="_blank" rel="noopener">Book a job as a customer</a>
+      </div>
+      <p class="sub" style="margin-top:18px;font-size:13.5px">
+        <b>Guile Pitogo</b> · Bacolod City, Negros Occidental<br>
+        <span class="mono">deadeyezjhin.github.io</span> · <span class="mono">guile.pitogo@gmail.com</span>
+      </p>
+    </div>
+    <div class="shot">
+      <div class="frame todo" data-shot="book-form.png">book-form.png</div>
+      <div class="cap"><b>Book an aircon job</b>No account, no app to install</div>
+    </div>
+  </div>
+  <div class="speaker"><b>Speaker</b>Open with what the shop gets: bookings that arrive complete, a schedule everybody shares, and numbers nobody has to count. Every slide after this is one question an owner asks.</div>
+</section>
+
+<!-- ═══════════ 02 · BEFORE ═══════════ -->
+<section class="slide" data-title="Before" data-short>
+  <div class="wrap">
+    <span class="eyebrow">Before</span>
+    <h2>Every booking was <span class="grad">a conversation</span></h2>
+    <p class="sub">An aircon cleaning, repair and installation shop in Bacolod City. The shop ran on the owner's personal number and a Facebook page.</p>
+    <div class="grid g4">
+      <div class="card"><div class="cardhead"><img class="icn mono" src="assets/cross.png" alt=""><h3>The booking</h3></div>
+        <p class="sub" style="margin:0">A call or a Facebook message. The address, the landmark and "which aircon?" asked one question at a time.</p></div>
+      <div class="card"><div class="cardhead"><img class="icn mono" src="assets/cross.png" alt=""><h3>The schedule</h3></div>
+        <p class="sub" style="margin:0">In the owner's head and his chat history. The technicians were told who, where and when by message.</p></div>
+      <div class="card"><div class="cardhead"><img class="icn mono" src="assets/cross.png" alt=""><h3>"Is it still on?"</h3></div>
+        <p class="sub" style="margin:0">The customer rang again to ask. The owner scrolled back to find the answer.</p></div>
+      <div class="card"><div class="cardhead"><img class="icn mono" src="assets/cross.png" alt=""><h3>The month</h3></div>
+        <p class="sub" style="margin:0">No count of bookings, no idea how fast anyone was rung back, no list of whose aircon is due a check.</p></div>
+    </div>
+    <div class="note" style="margin-top:18px">
+      <b>The rule I build by:</b> anything that makes a person ask, retype or remember by hand is worth removing. Every screen in this deck removes one of those.
+    </div>
+  </div>
+  <div class="speaker"><b>Speaker</b>There was no system to replace — there was a phone, a chat and a good memory. And no customer list to import: the app starts empty on purpose.</div>
+</section>
+
+<!-- ═══════════ 03 · AFTER ═══════════ -->
+<section class="slide" data-title="After">
+  <div class="wrap">
+    <span class="eyebrow">After</span>
+    <h2>Every message became <span class="grad">a screen that does the work</span></h2>
+    <p class="sub">A chat holds words. An app holds the job: who it is for, what is on it, whose turn it is, and when it was done.</p>
+    <div class="ba">
+      <div class="head">What they did by hand</div><div></div><div class="head h2">What the app does instead</div>
+      <div class="was"><b>"Where are you? Which aircon?"</b> — asked over chat</div><div class="arr">→</div>
+      <div class="now"><b>The booking page</b> — name, number, address, landmark, a pin, and a cart of aircons, all at once</div>
+      <div class="was"><b>Scrolling Messenger</b> for today's bookings</div><div class="arr">→</div>
+      <div class="now"><b>The Inbox</b> — new bookings with a count, Accept makes the customer and the job in one tap</div>
+      <div class="was"><b>A Word quotation</b> typed each time</div><div class="arr">→</div>
+      <div class="now"><b>Quotation from the booking</b> — his own layout, filled in, sent as a PDF</div>
+      <div class="was"><b>Telling each technician</b> by message</div><div class="arr">→</div>
+      <div class="now"><b>Jobs on every technician's phone</b> — with Call, Map, On the way, Done</div>
+      <div class="was"><b>"Is my booking still on?"</b> calls</div><div class="arr">→</div>
+      <div class="now"><b>Full status</b> — booked, accepted, scheduled, on the way, done, with who and when</div>
+      <div class="was"><b>Remembering</b> whose aircon is due</div><div class="arr">→</div>
+      <div class="now"><b>Check-ups</b> — a call list that fills itself, every 1 to 12 months per customer</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 04 · THREE PEOPLE ═══════════ -->
+<section class="slide" data-title="Three people, one app" data-short>
+  <div class="wrap">
+    <span class="eyebrow">Accounts</span>
+    <h2>Three kinds of people, <span class="grad">one app</span></h2>
+    <p class="sub">The role on the account decides what each one sees — and the database enforces it, not just the buttons.</p>
+    <div class="roles">
+      <div class="card"><div class="cardhead"><img class="icn big tint" src="assets/app/book.png" alt=""><h3>Customer</h3></div>
+        <div class="shot"><div class="frame todo" data-shot="book-form.png">book-form.png</div></div>
+        <ul class="clean"><li><b>The web page</b> — nothing to install</li><li>Books with no account; tracks with a code</li><li>An account shows only <b>their own</b> bookings</li></ul></div>
+      <div class="card"><div class="cardhead"><img class="icn big tint" src="assets/app/admin.png" alt=""><h3>Office</h3></div>
+        <div class="shot"><div class="frame todo" data-shot="office-inbox.png">office-inbox.png</div></div>
+        <ul class="clean"><li><b>Android app</b></li><li>Everything: bookings, jobs, customers, prices, users</li><li>Promotes a sign-up to technician or admin</li></ul></div>
+      <div class="card"><div class="cardhead"><img class="icn big tint" src="assets/app/jobs.png" alt=""><h3>Technician</h3></div>
+        <div class="shot"><div class="frame todo" data-shot="tech-today.png">tech-today.png</div></div>
+        <ul class="clean"><li><b>Android app</b></li><li>Every job that has a day on it</li><li>Never the customer list, never a price unless allowed</li></ul></div>
+    </div>
+  </div>
+  <div class="speaker"><b>Speaker</b>One HTML app behind all three. Owners ask "can a technician see my whole customer list?" — no, and it is the database that says no.</div>
+</section>
+
+<!-- ═══════════ 05 · BOOK A JOB ═══════════ -->
+<section class="slide" data-title="Book a job" data-short>
+  <div class="wrap appsplit three">
+    <div>
+      <span class="eyebrow">The customer</span>
+      <h2>A booking that arrives <span class="grad">complete</span></h2>
+      <p class="sub">The page asks everything the owner used to ask on the phone — once, in order, with nothing left out.</p>
+      <ul class="clean">
+        <li><b>A cart of aircons.</b> Tap Window, Split, Cassette… each one gets its own services, brand and model</li>
+        <li><b>Prices as they tap</b>, when the owner switches them on</li>
+        <li><b>The landmark, pushed hard</b> — in Bacolod it is how a technician finds the gate. Pin the house, or pick it on a map</li>
+        <li><b>Only open days.</b> Sundays and the owner's closed dates cannot be picked</li>
+        <li><b>A reference code</b> back at once, like <span class="mono">WA-7241</span></li>
+        <li>One plain privacy sentence and a tick box before it sends (Data Privacy Act)</li>
+      </ul>
+      <div class="note">A failed booking never looks like a successful one: the page says so, and keeps everything typed.</div>
+    </div>
+    <div class="shots">
+      <div class="shot"><div class="frame todo" data-shot="book-sheet.png">book-sheet.png</div><div class="cap"><b>1 · What it needs</b>Each aircon's services and prices</div></div>
+      <div class="shot"><div class="frame todo" data-shot="book-cart.png">book-cart.png</div><div class="cap"><b>2 · The cart</b>Three aircons, ₱2,800</div></div>
+      <div class="shot"><div class="frame todo" data-shot="book-done.png">book-done.png</div><div class="cap"><b>3 · The code</b>To check it later</div></div>
+    </div>
+  </div>
+  <div class="speaker"><b>Speaker</b>The link goes on the Facebook page's Book Now button and a QR on the van. A page nobody is sent to takes no bookings.</div>
+</section>
+
+<!-- ═══════════ 06 · TRACK ═══════════ -->
+<section class="slide" data-title="Track my booking">
+  <div class="wrap appsplit two">
+    <div>
+      <span class="eyebrow">The customer</span>
+      <h2>"Is my booking still on?" — <span class="grad">answered without a call</span></h2>
+      <p class="sub">The reference code and the number they booked with. The code is remembered on their phone, so next time it is already filled in.</p>
+      <div class="grid g2">
+        <div class="card tight"><div class="cardhead"><img class="icn mono" src="assets/padlock.png" alt=""><h3>Code and number</h3></div>
+          <p class="sub" style="margin:0;font-size:13px">Both must match. A stranger with one code learns nothing about anyone else.</p></div>
+        <div class="card tight"><div class="cardhead"><img class="icn mono" src="assets/badge.png" alt=""><h3>Or an account</h3></div>
+          <p class="sub" style="margin:0;font-size:13px">Every booking, every step, on any phone. Bookings made before registering are added with the number and one of their codes.</p></div>
+      </div>
+    </div>
+    <div class="shots">
+      <div class="shot"><div class="frame todo" data-shot="track.png">track.png</div><div class="cap"><b>Track my booking</b>No login</div></div>
+      <div class="shot"><div class="frame todo" data-shot="cust-bookings.png">cust-bookings.png</div><div class="cap"><b>My bookings</b>With an account</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 07 · INBOX ═══════════ -->
+<section class="slide" data-title="The Inbox" data-short>
+  <div class="wrap appsplit three">
+    <div>
+      <span class="eyebrow">The office</span>
+      <h2>New bookings, <span class="grad">one tap to a job</span></h2>
+      <p class="sub">The Inbox is the office's morning: every new booking with a red count, what they want, the day they asked for and what it comes to.</p>
+      <ul class="clean">
+        <li><b>Call</b> and <b>Map</b> on every booking — the landmark and the pin come with it</li>
+        <li><b>Accept</b> makes the customer file <b>and</b> the job, already on the day they asked for</li>
+        <li>A call the owner takes goes in as <b>"By phone"</b>, so every job lives in one place</li>
+        <li><b>Reject</b> needs no reason typed; the customer's page says so</li>
+        <li>A booking from an existing customer is accepted <b>onto their file</b> — never a second copy of the same person</li>
+      </ul>
+    </div>
+    <div class="shots">
+      <div class="shot"><div class="frame todo" data-shot="office-inbox.png">office-inbox.png</div><div class="cap"><b>Inbox</b>New, today, no date, check-ups</div></div>
+      <div class="shot"><div class="frame todo" data-shot="office-booking.png">office-booking.png</div><div class="cap"><b>The booking</b>Everything the customer sent</div></div>
+      <div class="shot"><div class="frame todo" data-shot="office-accept.png">office-accept.png</div><div class="cap"><b>Accept</b>Customer + job in one tap</div></div>
+    </div>
+  </div>
+  <div class="speaker"><b>Speaker</b>"Accept — new customer" under a booking from an existing customer once made a second file of the same person. Now that booking offers only "Accept — on their file". Found by the owner on his first real booking; fixed the same day.</div>
+</section>
+
+<!-- ═══════════ 08 · QUOTATION & RECEIPT ═══════════ -->
+<section class="slide" data-title="Quotation and receipt">
+  <div class="wrap appsplit two">
+    <div>
+      <span class="eyebrow">Paperwork</span>
+      <h2>His quotation, <span class="grad">already filled in</span></h2>
+      <p class="sub">The owner writes quotations today, in Word. The app makes <b>his</b> layout — letterhead, subject, the table, the note, his signature and the customer's Conforme line — from the booking.</p>
+      <div class="grid g2">
+        <div class="card tight"><div class="cardhead"><img class="icn mono" src="assets/layer-up.png" alt=""><h3>Quotation</h3></div>
+          <ul class="clean"><li>Lines and note editable, saved on the booking</li><li><b>Send as PDF</b> to Messenger, Viber or email</li><li>Accept takes its total as the job's price</li></ul></div>
+        <div class="card tight"><div class="cardhead"><img class="icn mono" src="assets/check.png" alt=""><h3>Receipt</h3></div>
+          <ul class="clean"><li>A4, from the job, for the technician to hand over</li><li>GCash number printed on it</li><li>The office marks it Paid — cash, GCash or other</li></ul></div>
+      </div>
+      <div class="note">No PDF library: the phone's own print screen makes the file. Nothing extra to download or break.</div>
+    </div>
+    <div class="shots">
+      <div class="shot"><div class="frame todo" data-shot="office-quote.png">office-quote.png</div><div class="cap"><b>Quotation</b>From a new booking</div></div>
+      <div class="shot"><div class="frame todo" data-shot="tech-receipt.png">tech-receipt.png</div><div class="cap"><b>Receipt</b>Share or print</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 09 · JOBS ═══════════ -->
+<section class="slide" data-title="Jobs and the schedule">
+  <div class="wrap appsplit two">
+    <div>
+      <span class="eyebrow">The office</span>
+      <h2>The schedule, <span class="grad">in one place</span></h2>
+      <p class="sub">Today, tomorrow, upcoming, no date yet, done. Morning or afternoon — not a promised minute a shop cannot keep.</p>
+      <ul class="clean">
+        <li><b>Route</b> — today's stops, morning first, opened in Google Maps</li>
+        <li><b>Not paid</b> in red on every open job until the office marks it</li>
+        <li><b>A limit per morning</b>: a full morning cannot be booked from the page</li>
+        <li><b>Closed days</b>: every Sunday, a fiesta, a training day — with the reason the customer sees</li>
+        <li>Edit the day, the aircons or the price; every change is written into the job's history</li>
+      </ul>
+    </div>
+    <div class="shots">
+      <div class="shot"><div class="frame todo" data-shot="office-jobs.png">office-jobs.png</div><div class="cap"><b>Jobs</b>Today, three stops</div></div>
+      <div class="shot"><div class="frame todo" data-shot="office-closed.png">office-closed.png</div><div class="cap"><b>Closed days</b>The page refuses them</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 10 · TECHNICIAN ═══════════ -->
+<section class="slide" data-title="The technician" data-short>
+  <div class="wrap appsplit two">
+    <div>
+      <span class="eyebrow">In the field</span>
+      <h2>Every job on the technician's <span class="grad">phone</span></h2>
+      <p class="sub">A small shop, not a dispatch centre: every technician sees every job with a day on it, and the owner often rides along. Whoever presses the button is written down.</p>
+      <ul class="clean">
+        <li><b>Call</b> the customer, <b>Map</b> to the pin, the landmark in big letters</li>
+        <li><b>On the way</b> — the customer's page says so</li>
+        <li><b>Start</b>, <b>Mark done</b>, and <b>Undo</b> — an undo is a step in the history, never a silent rollback</li>
+        <li>A <b>gate photo</b> for next time, and the <b>price to collect</b> when the owner allows it</li>
+        <li><b>No signal at the house?</b> It still works. Changes wait and send themselves</li>
+      </ul>
+    </div>
+    <div class="shots">
+      <div class="shot"><div class="frame todo" data-shot="tech-today.png">tech-today.png</div><div class="cap"><b>Today</b>Three stops, with the route</div></div>
+      <div class="shot"><div class="frame todo" data-shot="tech-job.png">tech-job.png</div><div class="cap"><b>The job</b>Call, map, done</div></div>
+    </div>
+  </div>
+  <div class="speaker"><b>Speaker</b>"No assignment" was the owner's decision: a technician picker is a screen a three-person shop would never use.</div>
+</section>
+
+<!-- ═══════════ 11 · FULL STATUS ═══════════ -->
+<section class="slide" data-title="Full status" data-short>
+  <div class="wrap appsplit two">
+    <div>
+      <span class="eyebrow">Everyone sees the same thing</span>
+      <h2>Full status, <span class="grad">everywhere</span></h2>
+      <p class="sub">The same five bars on every booking and job — for the office, the technician and the customer — and underneath, every step with <b>who</b> and <b>when</b>.</p>
+      <div class="flow steps">
+        <div class="node"><div class="k">Customer</div><h3>Booked</h3><p>on the page, or by phone</p></div>
+        <div class="to">→</div>
+        <div class="node"><div class="k">Office</div><h3>Accepted</h3><p>seen, then accepted</p></div>
+        <div class="to">→</div>
+        <div class="node"><div class="k">Office</div><h3>Scheduled</h3><p>a day, AM or PM</p></div>
+        <div class="to">→</div>
+        <div class="node hot"><div class="k">Technician</div><h3>In progress</h3><p>on the way, started</p></div>
+        <div class="to">→</div>
+        <div class="node"><div class="k">Technician</div><h3>Done</h3><p>then paid</p></div>
+      </div>
+      <div class="note">An edit says what changed — "Split #2 added", "Day Thu → Fri". The customer sees the steps and the names; a price only if the owner shows prices.</div>
+    </div>
+    <div class="shots">
+      <div class="shot"><div class="frame todo" data-shot="office-job-status.png">office-job-status.png</div><div class="cap"><b>The office's view</b>Who did what, and when</div></div>
+      <div class="shot"><div class="frame todo" data-shot="cust-status.png">cust-status.png</div><div class="cap"><b>The customer's view</b>The same steps</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 12 · CUSTOMERS & CHECK-UPS ═══════════ -->
+<section class="slide" data-title="Customers and check-ups">
+  <div class="wrap appsplit two">
+    <div>
+      <span class="eyebrow">Repeat business</span>
+      <h2>Every customer's aircons, and <span class="grad">when they are due</span></h2>
+      <p class="sub">A customer file is made when a booking is accepted — never straight from the public page. It keeps their aircons, their jobs and their bookings.</p>
+      <ul class="clean">
+        <li><b>A regular check</b> per customer: every 1, 2, 3, 6 or 12 months from a chosen date</li>
+        <li><b>Check-ups</b> is the owner's call list. He rings; <b>Book it</b> makes the job</li>
+        <li><b>A week after the job</b>: "is it working well?" — All good, or book a visit</li>
+        <li><b>Customers on a map</b>, and <b>Book again</b> from any past job</li>
+        <li>Delete a customer for real — every phone forgets them (the privacy law's right to be removed)</li>
+      </ul>
+      <div class="note">No SMS and no automatic reminders: the owner calls. A message nobody reads is cost, not value.</div>
+    </div>
+    <div class="shots">
+      <div class="shot"><div class="frame todo" data-shot="office-customer.png">office-customer.png</div><div class="cap"><b>A customer's file</b>Regular check, their aircons</div></div>
+      <div class="shot"><div class="frame todo" data-shot="office-checkups.png">office-checkups.png</div><div class="cap"><b>Check-ups</b>The call list</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 13 · THREE NUMBERS ═══════════ -->
+<section class="slide" data-title="The three numbers" data-short>
+  <div class="wrap appsplit">
+    <div>
+      <span class="eyebrow">What it is for</span>
+      <h2>Three numbers, <span class="grad">nobody counting</span></h2>
+      <p class="sub">The app was built to answer three questions from its own records. A screen that moves none of them was not built.</p>
+      <div class="grid g3">
+        <div class="card tight"><div class="kpi acc">1</div><div class="lbl">Bookings through the page, per week</div>
+          <p class="sub" style="margin:8px 0 0;font-size:13px">Against the calls and messages it replaces. Phone bookings are kept out, so the number stays honest.</p></div>
+        <div class="card tight"><div class="kpi acc">2</div><div class="lbl">How fast the office rings back</div>
+          <p class="sub" style="margin:8px 0 0;font-size:13px">From the booking to the office's first action. Measured first, judged later.</p></div>
+        <div class="card tight"><div class="kpi acc">3</div><div class="lbl">Done on the day promised</div>
+          <p class="sub" style="margin:8px 0 0;font-size:13px">The job keeps the promised day <b>and</b> when it was really done, or this could never be answered.</p></div>
+      </div>
+      <div class="note good">Plus a month's takings by cash, GCash and other, exported in one tap.</div>
+    </div>
+    <div class="shot">
+      <div class="frame todo" data-shot="office-numbers.png">office-numbers.png</div>
+      <div class="cap"><b>Admin → Numbers</b>An invented month</div>
+    </div>
+  </div>
+  <div class="speaker"><b>Speaker</b>This is the slide for owners: the app pays for itself only if these move. Deciding them first is also what kept the app small.</div>
+</section>
+
+<!-- ═══════════ 14 · THE OWNER RUNS IT ═══════════ -->
+<section class="slide" data-title="The owner runs it">
+  <div class="wrap appsplit three">
+    <div>
+      <span class="eyebrow">No developer needed</span>
+      <h2>The owner changes it <span class="grad">himself</span></h2>
+      <p class="sub">Everything a shop changes month to month is a screen in Admin, not a phone call to me.</p>
+      <ul class="clean">
+        <li><b>Services &amp; prices</b> — one price per service per appliance; a new service shows on the page at once</li>
+        <li><b>Appliances</b> — aircons, freezers, washing machines; his own picture for each; hide one without losing its history</li>
+        <li><b>Two switches</b>: show prices on the booking page; show prices to technicians</li>
+        <li><b>Page photos</b>, closed days, the shop's GCash, his quotation and receipt</li>
+        <li><b>Users</b>: anyone signs up; the owner makes them a technician or an admin, or switches them off</li>
+      </ul>
+    </div>
+    <div class="shots">
+      <div class="shot"><div class="frame todo" data-shot="office-prices.png">office-prices.png</div><div class="cap"><b>Services &amp; prices</b></div></div>
+      <div class="shot"><div class="frame todo" data-shot="office-appliances.png">office-appliances.png</div><div class="cap"><b>Appliances</b></div></div>
+      <div class="shot"><div class="frame todo" data-shot="office-users.png">office-users.png</div><div class="cap"><b>Users</b></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 15 · THE PUBLIC KEY ═══════════ -->
+<section class="slide" data-title="Customer data stays safe" data-short>
+  <div class="wrap">
+    <span class="eyebrow"><img class="icn tint" style="width:13px;height:13px" src="assets/encrypted.png" alt="">Security</span>
+    <h2>A public page, and <span class="grad">nothing public behind it</span></h2>
+    <p class="sub">The booking page's key to the database is public — anybody can read it from the page. So the whole design assumes a stranger holds it.</p>
+    <div class="flow">
+      <div class="node bad"><div class="k">A stranger with the key</div><h3>Can do three things</h3><p>Send a booking · look up a booking they have the code <b>and</b> number for · read the service list</p></div>
+      <div class="to">→</div>
+      <div class="node hot"><div class="k">The database</div><h3>Three functions, no tables</h3><p>No read of any table. Not customers, not jobs, not the team — not one row.</p></div>
+      <div class="to">→</div>
+      <div class="node"><div class="k">Staff</div><h3>Signed in, by role</h3><p>What an account may see is a database rule, checked on every request.</p></div>
+    </div>
+    <div class="grid g3" style="margin-top:14px">
+      <div class="card tight"><div class="cardhead"><img class="icn mono" src="assets/defence.png" alt=""><h3>Proven, not promised</h3></div>
+        <p class="sub" style="margin:0;font-size:13px">A test runs as the stranger and tries to read every table. Every read must be <b>refused</b> — it runs after every change to the database.</p></div>
+      <div class="card tight"><div class="cardhead"><img class="icn mono" src="assets/warning.png" alt=""><h3>Public input is untrusted</h3></div>
+        <p class="sub" style="margin:0;font-size:13px">A booking never becomes a customer on its own. A person in the office accepts it first. A hidden trap field catches bots; one booking a minute per number.</p></div>
+      <div class="card tight"><div class="cardhead"><img class="icn mono" src="assets/padlock.png" alt=""><h3>Privacy law</h3></div>
+        <p class="sub" style="margin:0;font-size:13px">Name, number and address are personal data (RA 10173): one plain sentence before sending, and the owner can remove a customer completely.</p></div>
+    </div>
+  </div>
+  <div class="speaker"><b>Speaker</b>This is the one rule whose breach could not be undone — the key is public the moment the page ships. So it was designed first and tested before anything else was built.</div>
+</section>
+
+<!-- ═══════════ 16 · OFFLINE ═══════════ -->
+<section class="slide" data-title="No signal">
+  <div class="wrap">
+    <span class="eyebrow">Works offline</span>
+    <h2>A dead zone at the house <span class="grad">loses nothing</span></h2>
+    <p class="sub">Every screen reads the phone's own copy. A change lands on the phone first and waits in a queue; the network is a bonus, never a condition.</p>
+    <div class="flow">
+      <div class="node"><div class="k">At the house</div><h3>Mark done</h3><p>No signal. The job says Done on the phone at once.</p></div>
+      <div class="to">→</div>
+      <div class="node hot"><div class="k">On the phone</div><h3>"1 waiting"</h3><p>The change is kept, even if the app is closed.</p></div>
+      <div class="to">→</div>
+      <div class="node"><div class="k">Signal back</div><h3>Sent by itself</h3><p>The office and the customer see Done. Nobody taps anything.</p></div>
+    </div>
+    <div class="grid g3" style="margin-top:14px">
+      <div class="card tight"><h3>Two phones, one job</h3><p class="sub" style="margin:0;font-size:13px">If the office and a technician change the same job, the loser is told what happened — never silently overwritten.</p></div>
+      <div class="card tight"><h3>The page opens offline</h3><p class="sub" style="margin:0;font-size:13px">Once opened, it opens again with no signal. Only the shop's own page is kept — never the data.</p></div>
+      <div class="card tight"><h3>Updates itself</h3><p class="sub" style="margin:0;font-size:13px">The Android app says when a new version is out and installs it, with what changed in plain words.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 17 · HOW I WORK ═══════════ -->
+<section class="slide" data-title="How I work">
+  <div class="wrap">
+    <span class="eyebrow">How I work</span>
+    <h2>I decide what it is for, <span class="grad">then build only that</span></h2>
+    <p class="sub">The three numbers came first. Everything else had to move one of them, or wait.</p>
+    <div class="grid g4">
+      <div class="card tight"><div class="kpi acc">1</div><div class="lbl">Ask the owner</div><p class="sub" style="margin:8px 0 0;font-size:13px">Eleven questions before a line of code. One phone call settles more than a week of guessing.</p></div>
+      <div class="card tight"><div class="kpi acc">2</div><div class="lbl">Safety first</div><p class="sub" style="margin:8px 0 0;font-size:13px">The public key's limits were built and tested before the page existed.</p></div>
+      <div class="card tight"><div class="kpi acc">3</div><div class="lbl">Test the real thing</div><p class="sub" style="margin:8px 0 0;font-size:13px">On a phone width and a PC width, with made-up data — never a real customer's.</p></div>
+      <div class="card tight"><div class="kpi acc">4</div><div class="lbl">Ship with notes</div><p class="sub" style="margin:8px 0 0;font-size:13px">Every version says what changed, in words the owner uses.</p></div>
+    </div>
+    <div class="note" style="margin-top:18px"><b>What I chose not to build is part of the work.</b> Invoices, parts and stock, SMS, push notifications, email updates, customer ratings and photos from customers were all considered — and parked, because each would open to an empty screen on day one. A screen nobody opens is cost, not value.</div>
+    <div class="grid g4" style="margin-top:14px">
+      <div class="card tight"><div class="kpi">19</div><div class="lbl">Builds shipped</div></div>
+      <div class="card tight"><div class="kpi">30</div><div class="lbl">Database changes, each tested</div></div>
+      <div class="card tight"><div class="kpi">1.8 MB</div><div class="lbl">Android app</div></div>
+      <div class="card tight"><div class="kpi">₱0</div><div class="lbl">Running cost</div></div>
+    </div>
+  </div>
+  <div class="speaker"><b>Speaker</b>₱0: GitHub Pages and the free database tier. A free database sleeps after a quiet week, so a small scheduled ping keeps it awake — a paused database would mean a customer's booking failing silently.</div>
+</section>
+
+<!-- ═══════════ 18 · THANK YOU ═══════════ -->
+<section class="slide" data-title="Thank you" data-short>
+  <div class="wrap" style="display:flex;flex-direction:column;justify-content:center;min-height:calc(100vh - 170px)">
+    <span class="eyebrow"><img class="icn tint" style="width:13px;height:13px" src="assets/star.png" alt="">Winter Services</span>
+    <h1>Tell me how your bookings arrive — <span class="grad">I'll show you what one app can take off your hands</span>.</h1>
+    <p class="sub" style="max-width:64ch">Aircon, plumbing, pest control, a laundry, a clinic: anyone who books a visit, sends someone, and gets asked "is it still on?" has the same lists — and the same fix.</p>
+    <div class="grid g3" style="margin-top:22px">
+      <div class="card"><div class="cardhead"><h3>Guile Pitogo</h3></div>
+        <ul class="clean">
+          <li>Bacolod City, Negros Occidental</li>
+          <li><span class="mono">guile.pitogo@gmail.com</span></li>
+        </ul></div>
+      <div class="card"><div class="cardhead"><h3>More work</h3></div>
+        <ul class="clean">
+          <li><span class="mono">deadeyezjhin.github.io</span></li>
+          <li>SukiRun — orders for a distributor's field agents</li>
+          <li><span class="mono">deadeyezjhin.github.io/sukirun-deck</span></li>
+        </ul></div>
+      <div class="card"><div class="cardhead"><h3>Try it</h3></div>
+        <ul class="clean">
+          <li><a class="try small" href="https://deadeyezjhin.github.io/winter-services-deck/demo/?as=office" target="_blank" rel="noopener">▶ The office</a></li>
+          <li><a class="try small ghost" href="https://deadeyezjhin.github.io/winter-services-deck/demo/?as=guest" target="_blank" rel="noopener">Book as a customer</a></li>
+          <li><a class="try small ghost" href="https://deadeyezjhin.github.io/winter-services-deck/demo/?as=tech" target="_blank" rel="noopener">The technician</a></li>
+          <li>Switch between them with the DEMO button</li>
+        </ul></div>
+    </div>
+    <p class="sub" style="margin-top:18px;font-size:12.5px;color:var(--dim)">
+      The demo and every screenshot use invented customers, invented numbers and invented jobs, answered by a pretend server inside your browser. No real customer, address or booking appears in this deck, and nothing you do in the demo leaves your browser. App icons by Flaticon.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<script src="deck.js?v=1"></script>
+</body>
+</html>
