@@ -332,3 +332,7 @@ a.try.ghost{background:transparent;color:var(--accent);border:1px solid color-mi
   .appsplit{grid-template-columns:1fr .5fr;min-height:auto;page-break-inside:avoid}
   .speaker{display:block}
 }
+
+/* in-slide jump links, e.g. "Slide 8 ->" on For your team */
+.card .sub a{color:var(--accent);text-decoration:none;font-weight:600;white-space:nowrap}
+.card .sub a:hover{text-decoration:underline}

@@ -3,12 +3,12 @@
 **Live:** [deadeyezjhin.github.io/winter-services-deck](https://deadeyezjhin.github.io/winter-services-deck/) ·
 **Demo:** [deadeyezjhin.github.io/winter-services-deck/demo](https://deadeyezjhin.github.io/winter-services-deck/demo/?as=office)
 
-An 18-slide portfolio presentation of **Winter Services**, a booking page and job app for an
+A 19-slide portfolio presentation of **Winter Services**, a booking page and job app for an
 aircon service shop in Bacolod City, written for the people who run a business, not for
 developers. Static page — no build step, no framework, no server required. It uses the same
 deck engine as the [SukiRun deck](https://deadeyezjhin.github.io/sukirun-deck/).
 
-**Short / Full** (top right, or `?short` / `?full` in the address): Short is the 10 slides to
+**Short / Full** (top right, or `?short` / `?full` in the address): Short is the 11 slides to
 say out loud in a room; Full adds the rest, for reading.
 
 **The demo** is the real app with its server address removed and an invented month of
@@ -35,7 +35,8 @@ bookings and jobs — see *The demo* below.
 | 15 Customer data stays safe | A public key, three functions, no tables |
 | 16 No signal | The queue, and what happens when two phones disagree |
 | 17 How I work | Decide first; what I chose not to build; the numbers |
-| 18 Thank you | Contact, and three ways into the demo |
+| 18 For your team | The VA work behind each screen: invoicing, scheduling, dispatch, follow-up, reports, notes |
+| 19 Thank you | Contact, and three ways into the demo |
 
 ## Controls
 

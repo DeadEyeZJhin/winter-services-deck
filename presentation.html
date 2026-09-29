@@ -345,6 +345,10 @@ a.try.ghost{background:transparent;color:var(--accent);border:1px solid color-mi
   .speaker{display:block}
 }
 
+/* in-slide jump links, e.g. "Slide 8 ->" on For your team */
+.card .sub a{color:var(--accent);text-decoration:none;font-weight:600;white-space:nowrap}
+.card .sub a:hover{text-decoration:underline}
+
 </style>
 </head>
 <body>
@@ -362,7 +366,7 @@ a.try.ghost{background:transparent;color:var(--accent);border:1px solid color-mi
   <div class="deckswitch" title="Short: the slides to present. Full: everything, to read.">
     <button class="btn" data-set="short">Short</button><button class="btn" data-set="full">Full</button>
   </div>
-  <span class="counter" id="counter"><b>01</b> / 18</span>
+  <span class="counter" id="counter"><b>01</b> / 19</span>
   <button class="btn" id="notesBtn" title="Toggle speaker notes (N)">
     <svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg><span>Notes</span>
   </button>
@@ -790,7 +794,31 @@ a.try.ghost{background:transparent;color:var(--accent);border:1px solid color-mi
   <div class="speaker"><b>Speaker</b>₱0: GitHub Pages and the free database tier. A free database sleeps after a quiet week, so a small scheduled ping keeps it awake — a paused database would mean a customer's booking failing silently.</div>
 </section>
 
-<!-- ═══════════ 18 · THANK YOU ═══════════ -->
+<!-- ═══════════ 18 · WHAT THIS MEANS FOR YOUR TEAM ═══════════ -->
+<section class="slide" data-title="For your team" data-short>
+  <div class="wrap">
+    <span class="eyebrow">Hiring a virtual assistant?</span>
+    <h2>Every screen here is a job <span class="grad">I know from the inside</span></h2>
+    <p class="sub">I built the tool that does each of these for a real shop — so I know every step, and where the numbers go wrong.</p>
+    <div class="grid g3">
+      <div class="card"><div class="cardhead"><h3>Invoicing &amp; quotations</h3></div>
+        <p class="sub" style="margin:0;font-size:13.5px">A quotation from each booking, the accepted total as the price, a receipt with discounts and paid or unpaid. <a href="#8">Slide 8 →</a></p></div>
+      <div class="card"><div class="cardhead"><h3>Booking &amp; scheduling</h3></div>
+        <p class="sub" style="margin:0;font-size:13.5px">New bookings accepted onto the right day, a limit per morning, closed days, every change in the history. <a href="#7">Slides 7</a> &amp; <a href="#9">9 →</a></p></div>
+      <div class="card"><div class="cardhead"><h3>Dispatch</h3></div>
+        <p class="sub" style="margin:0;font-size:13.5px">Each technician told where, when and what — with the landmark, the pin and a route for the day. <a href="#10">Slide 10 →</a></p></div>
+      <div class="card"><div class="cardhead"><h3>Customer follow-up</h3></div>
+        <p class="sub" style="margin:0;font-size:13.5px">"Is it still on?" answered by a status page, and a call list of whose aircon is due a check-up. <a href="#11">Slides 11</a> &amp; <a href="#12">12 →</a></p></div>
+      <div class="card"><div class="cardhead"><h3>Reports</h3></div>
+        <p class="sub" style="margin:0;font-size:13.5px">Three numbers the owner runs the shop by — counted for him, never by hand. <a href="#13">Slide 13 →</a></p></div>
+      <div class="card"><div class="cardhead"><h3>Clear notes</h3></div>
+        <p class="sub" style="margin:0;font-size:13.5px">Every change written down in plain words the owner uses — 19 versions, each with its notes. <a href="#17">Slide 17 →</a></p></div>
+    </div>
+  </div>
+  <div class="speaker"><b>Speaker</b>For a team hiring a VA rather than an app: the work behind each screen — quoting, invoicing, scheduling, dispatch, follow-up — is work I can do by hand in your own tools, because I had to understand every step to build it.</div>
+</section>
+
+<!-- ═══════════ 19 · THANK YOU ═══════════ -->
 <section class="slide" data-title="Thank you" data-short>
   <div class="wrap" style="display:flex;flex-direction:column;justify-content:center;min-height:calc(100vh - 170px)">
     <span class="eyebrow"><img class="icn tint" style="width:13px;height:13px" data-src="assets/star.png" alt="">Winter Services</span>
