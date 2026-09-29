@@ -255,14 +255,14 @@ const bump = row => { row.updated_at = iso(Date.now()); };
 const json = (body, status = 200) => new Response(JSON.stringify(body), {status, headers: {'Content-Type': 'application/json'}});
 const refuse = (msg, code = '22023', status = 400) => json({code, message: msg}, status);
 const wait = ms => new Promise(r => setTimeout(r, ms));
-const session = t => ({access_token: 'demo.' + t.id, refresh_token: 'demo-refresh.' + t.id, expires_in: 3600 * 24 * 365,
+const sessionOf = t => ({access_token: 'demo.' + t.id, refresh_token: 'demo-refresh.' + t.id, expires_in: 3600 * 24 * 365,
   token_type: 'bearer', user: {id: t.id, email: t.email}});
 
 function auth(path, body){
   if (path.startsWith('/logout')) return json({});
   if (path.startsWith('/token?grant_type=refresh_token')){
     const t = S.team[String(body.refresh_token || '').replace('demo-refresh.', '')];
-    return t ? json(session(t)) : json({error: 'invalid_grant', error_description: 'Sign in again.'}, 400);
+    return t ? json(sessionOf(t)) : json({error: 'invalid_grant', error_description: 'Sign in again.'}, 400);
   }
   const email = String(body.email || '').trim().toLowerCase();
   let t = Object.values(S.team).find(x => (x.email || '').toLowerCase() === email);
@@ -272,12 +272,12 @@ function auth(path, body){
     t = S.team[id] = {id, email, role: 'customer', display_name: meta.display_name || meta.full_name || email.split('@')[0],
       active: true, signup_kind: meta.signup_kind || 'customer', created_at: now, updated_at: now, last_sign_in_at: now};
     S.touched = true; save();
-    return json(session(t));
+    return json(sessionOf(t));
   }
   if (path.startsWith('/token?grant_type=password')){
     if (!t) return json({error_description: 'Demo: switch person with the strip at the bottom, or make an account — any email works.'}, 400);
     t.last_sign_in_at = iso(Date.now()); save();
-    return json(session(t));
+    return json(sessionOf(t));
   }
   return json({});
 }
@@ -674,6 +674,33 @@ window.wsDemoAs = function(who){
     const ui = lsGet('ws_ui'); if (ui){ ui.tab = who === 'tech' ? 'jobs' : 'inbox'; lsSet('ws_ui', ui); }
   } catch (e) {}
   location.href = location.pathname + location.hash;
+};
+/* Switch person WITHOUT a reload: the portfolio's phone calls this. It does what the app
+   itself does when another tab signs in (its 'storage' handler): take the new session,
+   load that person's local copy, redraw, sync. The app's top-level `let`s (session, db,
+   ui, stack...) are reachable by name from here once the app has run. */
+window.wsDemoSwitch = function(who){
+  if (who !== 'guest' && !P[who]) return false;
+  let ok = true;
+  try {
+    if (who === 'guest') localStorage.removeItem('ws_session');
+    else {
+      const p = P[who], t = S.team[p.id] || p;
+      localStorage.setItem('ws_session', JSON.stringify({access_token: 'demo.' + p.id, refresh_token: 'demo-refresh.' + p.id,
+        expires_at: Date.now() + 365 * DAY, email: p.email, uid: p.id, role: t.role}));
+    }
+    localStorage.setItem('wsdemo_as', who);
+    /* global session, db, queue, notices, stack, ui, authOpen, loadLocal, render, flush, forgetStatus, saveUi */
+    session = lsGet('ws_session');
+    db = null; queue = []; notices = []; stack = []; authOpen = false;
+    ui.tab = who === 'tech' ? 'jobs' : 'inbox'; saveUi();
+    forgetStatus();
+    if (session) loadLocal();
+    render();
+    if (session) flush();
+    window.scrollTo(0, 0);
+  } catch (e) { ok = false; console.warn('demo switch:', e); }
+  return ok;
 };
 // ?as=office | tech | cust | guest opens the demo as that person (the deck's buttons use it)
 const q = new URLSearchParams(location.search).get('as');

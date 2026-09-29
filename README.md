@@ -77,6 +77,9 @@ the one browser as if they were four phones:
 | `tech` | Jun, a technician | every job with a day on it |
 | `cust` | Carmela, a customer | her own bookings, every step |
 
+`window.wsDemoSwitch(who)` changes person without a reload (the portfolio's phone uses it),
+the way the app itself follows a sign-in made in another tab.
+
 What one person does reaches the others: book on the page, accept it in the office, mark it
 done as the technician, and the customer's page shows Done. The invented month moves with the
 calendar until someone changes something; **Reset the demo** puts it back.
